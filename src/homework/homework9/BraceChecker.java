@@ -37,7 +37,6 @@ public class BraceChecker {
                     continue;
             }
         }
-        System.out.println("փակագծերը ճիշտ է դրված");
     }
 }
 
