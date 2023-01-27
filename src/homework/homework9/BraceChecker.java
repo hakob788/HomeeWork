@@ -22,19 +22,21 @@ public class BraceChecker {
                     if (a != '(') {
                         System.out.println("Error: opened " + a + " but closed ) at " + i);
                     }
-                    continue;
+                    break;
                 case ']':
                     char b = s.pop();
                     if (b != '[') {
                         System.out.println("Error: opened " + b + " but closed ] at " + i);
                     }
-                    continue;
+                    break;
                 case '}':
                     char c = s.pop();
                     if (c != '{') {
                         System.out.println("Error: opened " + c + " but closed } at " + i);
                     }
-                    continue;
+                    break;
+                default:
+                    System.out.println("բացվել է բայց չի փակվել " + i);
             }
         }
     }
