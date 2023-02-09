@@ -20,7 +20,7 @@ public class DynamicArrayDemo {
         da.print();
         System.out.println();
         System.out.println();
-        da.add(7, 9);
+        da.add(2, 3);
         da.print();
         System.out.println();
         System.out.println();

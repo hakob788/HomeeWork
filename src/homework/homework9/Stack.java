@@ -1,28 +1,24 @@
 package homework.homework9;
 
 public class Stack {
-    private char[] array = new char[10];
-    private int size;
+    private int[] array = new int[10];
+    public int tos;
 
     public Stack() {
-        size = -1;
+        tos = -1;
     }
 
-    public char push(char value) {
-        if (size == array.length) {
-            System.out.println("stack-ը վերջացավ");
+    public void push(int value) {
+        if (tos == 9) {
         } else {
-            array[++size] = value;
+            array[++tos] = value;
         }
-        return value;
     }
 
-    public char pop() {
-        if (size < 0) {
-            System.out.println("stack-ը դատարկ է");
+    public int pop() {
+        if (tos < 0) {
             return 0;
-        } else {
-            return array[size--];
         }
+        return array[tos--];
     }
 }

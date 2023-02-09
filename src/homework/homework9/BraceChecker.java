@@ -1,7 +1,6 @@
 package homework.homework9;
 
 public class BraceChecker {
-    Stack s = new Stack();
     private String text;
 
     public BraceChecker(String text) {
@@ -10,36 +9,53 @@ public class BraceChecker {
 
     public void check() {
         Stack s = new Stack();
+        int last;
+        char lastBracket;
         for (int i = 0; i < text.length(); i++) {
-            switch (text.charAt(i)) {
+            char c = text.charAt(i);
+            switch (c) {
                 case '(':
                 case '[':
                 case '{':
-                    s.push(text.charAt(i));
+                    s.push(c);
                     break;
                 case ')':
-                    char a = s.pop();
-                    if (a != '(') {
-                        System.out.println("Error: opened " + a + " but closed ) at " + i);
+                    last = s.pop();
+                    if (last == 0) {
+                        System.out.println("Error: փակվել է " + c + " " + i + "-րդ ինդեքսում բայց չի բացվել");
+                    } else {
+                        lastBracket = (char) last;
+                        if (lastBracket != '(') {
+                            System.out.println("Error: բացվել է " + lastBracket + " բայց փակվել է " + c + " " + i + "-րդ ինդեքսում");
+                        }
                     }
                     break;
                 case ']':
-                    char b = s.pop();
-                    if (b != '[') {
-                        System.out.println("Error: opened " + b + " but closed ] at " + i);
+                    last = s.pop();
+                    if (last == 0) {
+                        System.out.println("Error: փակվել է " + c + " " + i + "-րդ ինդեքսում բայց չի բացվել");
+                    } else {
+                        lastBracket = (char) last;
+                        if (lastBracket != '[') {
+                            System.out.println("Error: բացվել է " + lastBracket + " բայց փակվել է " + c + " " + i + "-րդ ինդեքսում");
+                        }
                     }
                     break;
                 case '}':
-                    char c = s.pop();
-                    if (c != '{') {
-                        System.out.println("Error: opened " + c + " but closed } at " + i);
+                    last = s.pop();
+                    if (last == 0) {
+                        System.out.println("Error: փակվել է " + c + " " + i + "-րդ ինդեքսում բայց չի բացվել");
+                    } else {
+                        lastBracket = (char) last;
+                        if (lastBracket != '{') {
+                            System.out.println("Error: բացվել է " + lastBracket + " բայց փակվել է " + c + " " + i + "-րդ ինդեքսում");
+                        }
                     }
                     break;
-                default:
-                    System.out.println("բացվել է բայց չի փակվել " + i);
             }
+        }
+        while ((lastBracket = (char) s.pop()) != 0) {
+            System.out.println("Error: բացվել է " + lastBracket + " բայց չի փակվել");
         }
     }
 }
-
-
