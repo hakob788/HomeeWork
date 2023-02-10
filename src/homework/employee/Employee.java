@@ -1,4 +1,4 @@
-package homework.homework10;
+package homework.employee;
 
 import java.util.Objects;
 
@@ -19,6 +19,7 @@ public class Employee {
         this.company = company;
         this.position = position;
     }
+
     public Employee() {
     }
 

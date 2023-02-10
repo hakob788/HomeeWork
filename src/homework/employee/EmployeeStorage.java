@@ -1,4 +1,4 @@
-package homework.homework10;
+package homework.employee;
 
 public class EmployeeStorage {
     private Employee[] array = new Employee[10];
@@ -29,7 +29,7 @@ public class EmployeeStorage {
         boolean found = false;
         for (int i = 0; i < size; i++) {
             Employee employee = array[i];
-            if (employee.getEmployeeID(). equals(employeeID)){
+            if (employee.getEmployeeID().equals(employeeID)) {
                 found = true;
                 System.out.println(employee);
             }
@@ -38,6 +38,7 @@ public class EmployeeStorage {
             System.out.println("There is no employee with this ID");
         }
     }
+
     public void searchByCompany(String companyName) {
         boolean found = false;
         for (int i = 0; i < size; i++) {
