@@ -52,4 +52,43 @@ public class EmployeeStorage {
             System.out.println("No such company exists");
         }
     }
+
+    public void searchSalaryByRange(double min, double max) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = array[i];
+            if (min <= employee.getSalary() && max >= employee.getSalary()) {
+                System.out.println(employee);
+            } else {
+                System.out.println("the employees salary does not belong to this range");
+            }
+        }
+    }
+
+    public void searchNewPosition(String EmployeeId, String newPosition) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = array[i];
+            if (employee.getEmployeeID().equals(EmployeeId)) {
+                employee.setPosition(newPosition);
+                System.out.println(employee);
+            } else {
+                System.out.println("There is no employee with this ID");
+            }
+        }
+    }
+
+    public void searchInactiveEmployeeById(String employeeID, boolean active) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = array[i];
+            if (employee.getEmployeeID().equals(employeeID)) {
+                employee.setActive(active);
+                System.out.println(employee);
+            } else {
+                System.out.println("There is no employee with this ID");
+            }
+        }
+    }
+
+    public void searchByActive() {
+
+    }
 }
