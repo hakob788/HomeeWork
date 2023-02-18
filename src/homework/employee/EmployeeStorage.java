@@ -1,94 +1,73 @@
 package homework.employee;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class EmployeeStorage {
-    private Employee[] array = new Employee[10];
+    private Employee[] employees = new Employee[10];
     private int size = 0;
 
     public void add(Employee value) {
-        if (size == array.length) {
+        if (employees.length == size) {
             extend();
         }
-        array[size++] = value;
+        employees[size++] = value;
     }
 
     private void extend() {
-        Employee[] newArray = new Employee[array.length + 10];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-        }
-        array = newArray;
+        Employee[] tmp = new Employee[employees.length + 10];
+        System.arraycopy(employees, 0, tmp, 0, size);
+        employees = tmp;
     }
 
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.println(array[i] + " ");
+            System.out.println(employees[i] + " ");
         }
     }
 
-    public void searchByEmployeeID(String employeeID) {
-        boolean found = false;
+    public void printByStatus(boolean active) {
         for (int i = 0; i < size; i++) {
-            Employee employee = array[i];
-            if (employee.getEmployeeID().equals(employeeID)) {
-                found = true;
+            if (employees[i].isActive() == active) {
+                System.out.println(employees[i] + " ");
+            }
+        }
+    }
+
+    public void printByRegisterDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM//yyyy");
+        Date date = new Date();
+        String dateStr = sdf.format(date);
+        System.out.println(dateStr);
+    }
+
+    public Employee getEmployeeById(String Id) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            if (employee.getEmployeeID().equals(Id)) {
+                return employees[i];
+            }
+        }
+        return null;
+    }
+
+    public void searchByCompanyName(String companyName) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            if (employees[i].getCompany().contains(companyName)) {
                 System.out.println(employee);
             }
         }
-        if (!found) {
-            System.out.println("There is no employee with this ID");
-        }
     }
 
-    public void searchByCompany(String companyName) {
-        boolean found = false;
+    public void searchEmployeeBySalaryRange(double minSalary, double maxSalary) {
         for (int i = 0; i < size; i++) {
-            Employee employee = array[i];
-            if (employee.getCompany().startsWith(companyName)) {
-                found = true;
-                System.out.println(employee);
-            }
-        }
-        if (!found) {
-            System.out.println("No such company exists");
-        }
-    }
-
-    public void searchSalaryByRange(double min, double max) {
-        for (int i = 0; i < size; i++) {
-            Employee employee = array[i];
-            if (min <= employee.getSalary() && max >= employee.getSalary()) {
+            Employee employee = employees[i];
+            if (minSalary <= employee.getSalary() && maxSalary >= employee.getSalary()) {
                 System.out.println(employee);
             } else {
                 System.out.println("the employees salary does not belong to this range");
             }
         }
-    }
-
-    public void searchNewPosition(String EmployeeId, String newPosition) {
-        for (int i = 0; i < size; i++) {
-            Employee employee = array[i];
-            if (employee.getEmployeeID().equals(EmployeeId)) {
-                employee.setPosition(newPosition);
-                System.out.println(employee);
-            } else {
-                System.out.println("There is no employee with this ID");
-            }
-        }
-    }
-
-    public void searchInactiveEmployeeById(String employeeID, boolean active) {
-        for (int i = 0; i < size; i++) {
-            Employee employee = array[i];
-            if (employee.getEmployeeID().equals(employeeID)) {
-                employee.setActive(active);
-                System.out.println(employee);
-            } else {
-                System.out.println("There is no employee with this ID");
-            }
-        }
-    }
-
-    public void searchByActive() {
-
     }
 }

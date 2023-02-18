@@ -1,5 +1,6 @@
 package homework.employee;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Employee {
@@ -10,9 +11,10 @@ public class Employee {
     private double salary;
     private String company;
     private String position;
-    private boolean active;
+    private boolean active = true;
+    private String dateOfBirthday;
 
-    public Employee(String name, String surname, String employeeID, double salary, String company, String position, boolean active) {
+    public Employee(String name, String surname, String employeeID, double salary, String company, String position, boolean active, String dateOfBirthday) {
         this.name = name;
         this.surname = surname;
         this.employeeID = employeeID;
@@ -20,9 +22,18 @@ public class Employee {
         this.company = company;
         this.position = position;
         this.active = active;
+        this.dateOfBirthday = dateOfBirthday;
     }
 
     public Employee() {
+    }
+
+    public String getDateOfBirthday() {
+        return dateOfBirthday;
+    }
+
+    public void setDateOfBirthday(String dateOfBirthday) {
+        this.dateOfBirthday = dateOfBirthday;
     }
 
     public boolean isActive() {
@@ -77,9 +88,8 @@ public class Employee {
         return position;
     }
 
-    public String setPosition(String position) {
+    public void setPosition(String position) {
         this.position = position;
-        return position;
     }
 
     @Override
@@ -87,12 +97,15 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Double.compare(employee.salary, salary) == 0 && active == employee.active && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(employeeID, employee.employeeID) && Objects.equals(company, employee.company) && Objects.equals(position, employee.position);
+        return Double.compare(employee.salary, salary) == 0 && active == employee.active && Objects.equals(name, employee.name)
+                && Objects.equals(surname, employee.surname) && Objects.equals(employeeID, employee.employeeID)
+                && Objects.equals(company, employee.company) && Objects.equals(position, employee.position)
+                && Objects.equals(dateOfBirthday, employee.dateOfBirthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, employeeID, salary, company, position, active);
+        return Objects.hash(name, surname, employeeID, salary, company, position, active, dateOfBirthday);
     }
 
     @Override
@@ -105,6 +118,7 @@ public class Employee {
                 ", company='" + company + '\'' +
                 ", position='" + position + '\'' +
                 ", active=" + active +
+                ", dateOfBirthday=" + dateOfBirthday +
                 '}';
     }
 }
