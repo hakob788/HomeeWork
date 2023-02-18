@@ -56,9 +56,6 @@ public class EmployeeDemo {
             }
         }
     }
-    public static void dateOfBirthday() {
-        String dateOfBirthday = scanner.nextLine();
-    }
     private static void activateEmployeeById() {
         employeeStorage.printByStatus(false);
         System.out.println("Please choose employee id");
