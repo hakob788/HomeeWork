@@ -1,7 +1,6 @@
 package homework.employee;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.Scanner;
 
 public class EmployeeDemo {
@@ -56,6 +55,7 @@ public class EmployeeDemo {
             }
         }
     }
+
     private static void activateEmployeeById() {
         employeeStorage.printByStatus(false);
         System.out.println("Please choose employee id");
