@@ -1,7 +1,7 @@
-package homework.employee;
+package homework.employee.storage;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import homework.employee.model.Company;
+import homework.employee.model.Employee;
 
 public class EmployeeStorage {
     private Employee[] employees = new Employee[10];
@@ -20,42 +20,10 @@ public class EmployeeStorage {
         employees = tmp;
     }
 
-    public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(employees[i] + " ");
-        }
-    }
-
     public void printByStatus(boolean active) {
         for (int i = 0; i < size; i++) {
             if (employees[i].isActive() == active) {
                 System.out.println(employees[i] + " ");
-            }
-        }
-    }
-
-    public void printByRegisterDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM//yyyy");
-        Date date = new Date();
-        String dateStr = sdf.format(date);
-        System.out.println(dateStr);
-    }
-
-    public Employee getEmployeeById(String Id) {
-        for (int i = 0; i < size; i++) {
-            Employee employee = employees[i];
-            if (employee.getEmployeeID().equals(Id)) {
-                return employees[i];
-            }
-        }
-        return null;
-    }
-
-    public void searchByCompanyName(String companyName) {
-        for (int i = 0; i < size; i++) {
-            Employee employee = employees[i];
-            if (employees[i].getCompany().contains(companyName)) {
-                System.out.println(employee);
             }
         }
     }
@@ -68,6 +36,31 @@ public class EmployeeStorage {
             } else {
                 System.out.println("the employees salary does not belong to this range");
             }
+        }
+    }
+
+    public void searchByCompany(Company company) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            if (employees[i].getCompany().equals(company)) {
+                System.out.println(employee);
+            }
+        }
+    }
+
+    public Employee getEmployeeById(String Id) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            if (employee.getEmployeeID().equals(Id)) {
+                return employees[i];
+            }
+        }
+        return null;
+    }
+
+    public void print() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(employees[i] + " ");
         }
     }
 }

@@ -41,7 +41,6 @@ public class DynamicArray {
         for (int i = index; i < size; i++) {
             array[i] = array[i + 1];
         }
-
         size--;
     }
 
