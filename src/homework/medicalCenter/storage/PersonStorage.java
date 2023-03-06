@@ -1,5 +1,6 @@
 package homework.medicalCenter.storage;
 
+import homework.medicalCenter.Profession;
 import homework.medicalCenter.model.Doctor;
 import homework.medicalCenter.model.Patient;
 import homework.medicalCenter.model.Person;
@@ -28,7 +29,7 @@ public class PersonStorage {
         }
     }
 
-    public void printDoctorByProfession(String profession) {
+    public void printDoctorByProfession(Profession profession) {
         for (int i = 0; i < size; i++) {
             Person person = persons[i];
             if (person instanceof Doctor) {

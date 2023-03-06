@@ -98,20 +98,23 @@ public class MedicalCenterDemo implements Commands {
         personStorage.printDoctors();
         System.out.println("Please choose doctor id");
         String doctorId = scanner.nextLine();
-        String professionStr = scanner.nextLine();
         Doctor doctorById = personStorage.getDoctorById(doctorId);
         if (doctorById != null) {
             System.out.println("Please input name, surname, phone,email, profession");
-            Profession[] values = Profession.values();
             String doctorDataStr = scanner.nextLine();
             String[] doctorData = doctorDataStr.split(",");
-            doctorById.setId(doctorId);
-            doctorById.setName(doctorData[0]);
-            doctorById.setSurname(doctorData[1]);
-            doctorById.setPhoneNumber(doctorData[2]);
-            doctorById.setEmail(doctorData[3]);
-            doctorById.setProfession(Profession.valueOf(professionStr));
-            System.out.println("Doctor changed");
+            try {
+                String profession = doctorData[5];
+                doctorById.setId(doctorId);
+                doctorById.setName(doctorData[0]);
+                doctorById.setSurname(doctorData[1]);
+                doctorById.setPhoneNumber(doctorData[2]);
+                doctorById.setEmail(doctorData[3]);
+                doctorById.setProfession(Profession.valueOf(profession));
+                System.out.println("Doctor changed");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("");
+            }
         } else {
             System.out.println("doctor with " + doctorId + " does not exists!");
         }
@@ -132,30 +135,34 @@ public class MedicalCenterDemo implements Commands {
     private static void searchDoctorByProfession() {
         System.out.println("Please input profession");
         String profession = scanner.nextLine();
-        personStorage.printDoctorByProfession(profession);
-
+        personStorage.printDoctorByProfession(Profession.valueOf(profession));
     }
 
     private static void addDoctor() {
-        System.out.println("Please input id, name, surname,phone,email,profession");
+        System.out.println("Please input Doctor id, name, surname,phone,email,profession");
         Profession[] values = Profession.values();
         String doctorDataStr = scanner.nextLine();
         String[] doctorData = doctorDataStr.split(",");
-        String doctorId = doctorData[0];
-        String professionStr = doctorData[5];
-        Doctor doctorById = personStorage.getDoctorById(doctorId);
-        if (doctorById == null) {
-            Doctor doctor = new Doctor();
-            doctor.setId(doctorId);
-            doctor.setName(doctorData[1]);
-            doctor.setSurname(doctorData[2]);
-            doctor.setPhoneNumber(doctorData[3]);
-            doctor.setEmail(doctorData[4]);
-            doctor.setProfession(Profession.valueOf(professionStr));
-            personStorage.add(doctor);
-            System.out.println("Doctor added");
-        } else {
-            System.out.println("doctor with " + doctorId + " already exists!");
+        try {
+            String doctorId = doctorData[0];
+            String professionStr = doctorData[5];
+            Profession profession = Profession.valueOf(doctorData[5]);
+            Doctor doctorById = personStorage.getDoctorById(doctorId);
+            if (doctorById == null) {
+                Doctor doctor = new Doctor();
+                doctor.setId(doctorId);
+                doctor.setName(doctorData[1]);
+                doctor.setSurname(doctorData[2]);
+                doctor.setPhoneNumber(doctorData[3]);
+                doctor.setEmail(doctorData[4]);
+                doctor.setProfession(Profession.valueOf(professionStr));
+                personStorage.add(doctor);
+                System.out.println("Doctor added");
+            } else {
+                System.out.println("doctor with " + doctorId + " already exists!");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("");
         }
     }
 }

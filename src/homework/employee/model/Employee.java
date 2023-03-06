@@ -13,20 +13,19 @@ public class Employee {
     private double salary;
     private Company company;
     private String position;
-    private boolean active;
+    private boolean active = true;
     private Date registerDate;
     private Date dateOfBirthday;
 
 
     public Employee(String name, String surname, String employeeID, double salary, Company company, String position,
-                    boolean active, Date registerDate, Date dateOfBirthday) {
+                    Date registerDate, Date dateOfBirthday) {
         this.name = name;
         this.surname = surname;
         this.employeeID = employeeID;
         this.salary = salary;
         this.company = company;
         this.position = position;
-        this.active = active;
         this.dateOfBirthday = dateOfBirthday;
         this.registerDate = registerDate;
     }

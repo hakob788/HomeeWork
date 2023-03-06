@@ -39,7 +39,7 @@ public class EmployeeDemo implements Commands {
                     getEmployeeById();
                     break;
                 case SEARCH_EMPLOYEE_BY_COMPANY:
-                    searchCompanyName();
+                    searchCompany();
                     break;
                 case SEARCH_EMPLOYEE_BY_SALARY_RANGE:
                     searchEmployeeBySalaryRange();
@@ -58,6 +58,7 @@ public class EmployeeDemo implements Commands {
                     break;
                 case PRINT_ALL_COMPANIES:
                     companyStorage.print();
+                    break;
                 default:
                     System.out.println("Wrong command, try again!");
             }
@@ -133,11 +134,11 @@ public class EmployeeDemo implements Commands {
         }
     }
 
-    private static void searchCompanyName() {
+    private static void searchCompany() {
         companyStorage.print();
         System.out.println("Please input company id");
-        String companyId = scanner.nextLine();
-        Company companyById = companyStorage.getCompanyById(companyId);
+        String company = scanner.nextLine();
+        Company companyById = companyStorage.getCompanyById(company);
         if (companyById != null) {
             employeeStorage.searchByCompany(companyById);
         } else {
@@ -176,10 +177,9 @@ public class EmployeeDemo implements Commands {
                 Date DateOfBirthday = DateUtil.stringToDate(employeeData[5]);
                 Employee newEmployee = new Employee(employeeData[0], employeeData[1], employeeId,
                         Double.parseDouble(employeeData[3]), companyById, employeeData[4],
-                        true, registerDate, DateOfBirthday);
+                        new Date(), DateUtil.stringToDate(employeeData[5]));
                 employeeStorage.add(newEmployee);
-                int countOfEmployees = employee.getCompany().getCountOfEmployees() - 1;
-                employee.getCompany().setCountOfEmployees(countOfEmployees);
+                companyById.setCountOfEmployees(companyById.getCountOfEmployees() + 1);
                 System.out.println("Employee was added");
             } else {
                 System.out.println("employee with " + employeeId + " already exists!!!");
