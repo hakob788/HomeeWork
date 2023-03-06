@@ -97,6 +97,7 @@ public class MedicalCenterDemo implements Commands {
     private static void changeDoctorById() {
         personStorage.printDoctors();
         System.out.println("Please choose doctor id");
+        Profession[] value = Profession.values();
         String doctorId = scanner.nextLine();
         Doctor doctorById = personStorage.getDoctorById(doctorId);
         if (doctorById != null) {
@@ -104,16 +105,16 @@ public class MedicalCenterDemo implements Commands {
             String doctorDataStr = scanner.nextLine();
             String[] doctorData = doctorDataStr.split(",");
             try {
-                String profession = doctorData[5];
+                Profession profession = Profession.valueOf(doctorData[4]);
                 doctorById.setId(doctorId);
                 doctorById.setName(doctorData[0]);
                 doctorById.setSurname(doctorData[1]);
                 doctorById.setPhoneNumber(doctorData[2]);
                 doctorById.setEmail(doctorData[3]);
-                doctorById.setProfession(Profession.valueOf(profession));
+                doctorById.setProfession(profession);
                 System.out.println("Doctor changed");
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("");
+                System.out.println("wrong profession");
             }
         } else {
             System.out.println("doctor with " + doctorId + " does not exists!");
@@ -162,7 +163,7 @@ public class MedicalCenterDemo implements Commands {
                 System.out.println("doctor with " + doctorId + " already exists!");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("");
+            System.out.println("wrong profession");
         }
     }
 }
