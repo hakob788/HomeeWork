@@ -68,7 +68,7 @@ public class MedicalCenterDemo implements Commands {
         String doctorId = scanner.nextLine();
         Doctor doctorById = personStorage.getDoctorById(doctorId);
         if (doctorById != null) {
-            System.out.println("Please input id,name,surname,phone,registerDateTime(26-02-2023 14:00)");
+            System.out.println("Please input Patient id,name,surname,phone,registerDateTime(26-02-2023 14:00)");
             String patientDataStr = scanner.nextLine();
             String[] patientData = patientDataStr.split(",");
             try {
