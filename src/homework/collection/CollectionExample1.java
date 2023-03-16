@@ -24,8 +24,7 @@ public class CollectionExample1 {
         //2
         System.out.println("Please input delete name ");
         String deleteName = scanner.nextLine();
-        if (names.contains(deleteName)) {
-            names.remove(deleteName);
+        if (names.remove(deleteName)) {
             System.out.println(names);
         } else {
             System.out.println("name not listed!");
