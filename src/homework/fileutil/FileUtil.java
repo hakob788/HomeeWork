@@ -8,10 +8,10 @@ public class FileUtil {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //System.out.println(fileSearch());
-        //contentSearch();
-        //findLines();
-        //printSizeOfPackage();
+        System.out.println(fileSearch());
+        contentSearch();
+        findLines();
+        printSizeOfPackage();
         createFileWithContent();
     }
 
